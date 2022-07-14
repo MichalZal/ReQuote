@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, useRouteMatch, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import classes from "./Comments.module.css";
 import { getAllComments } from "../../lib/api";
 
@@ -10,16 +10,14 @@ import CommentsList from "../comments/CommentsList";
 
 const Comments = () => {
 	const [isAddingComment, setIsAddingComment] = useState(false);
-	const match = useRouteMatch();
 	const params = useParams();
+	const navigate = useNavigate()
 
 	const {
 		sendRequest,
 		status,
 		data: loadedComments,
 	} = useHttp(getAllComments);
-
-	const pathWithoutComments = match.url.slice(0, 28);
 
 	const { quoteId } = params;
 
@@ -58,11 +56,13 @@ const Comments = () => {
 		comments = <p className="centered">No comments set</p>;
 	}
 
+	const navigateBack = () => {
+		navigate(-1)
+	}
+
 	return (
 		<section className={classes.comments}>
-			<Link className="btn--flat" to={pathWithoutComments}>
-				cancel
-			</Link>
+			<button className='btn--flat' onClick={navigateBack}>cancel</button>
 			<h2>User Comments</h2>
 			{!isAddingComment && (
 				<button className="btn" onClick={startAddCommentHandler}>
