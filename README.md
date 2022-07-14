@@ -22,3 +22,6 @@ Add Quote:
 ![image](https://user-images.githubusercontent.com/78042518/178533605-e9b91880-aa8f-4264-bed0-50b04ac73dda.png)
 
 ## 14th July. Upgraded to react-router-dom version 6. 
+
+To use it, first downlonad the code, use ```npm i``` to install dependencies. 
+Then create own backend in firebase and open realtime database. Paste the url into the custom hook URL variable, and the app is ready to go.
